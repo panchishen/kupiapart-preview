@@ -16,10 +16,29 @@
     let activeCategory = 'all';
     let visibleLimit = cards.filter((card) => !card.hasAttribute('data-article-collapsed')).length;
 
-    function render() {
-      const matching = cards.filter((card) => activeCategory === 'all' || card.dataset.articleCategory === activeCategory);
-      const limit = activeCategory === 'all' ? visibleLimit : matching.length;
+    /* The unfiltered page splits cards into several grids; a filtered list must read as one even grid. */
+    const grids = Array.from(document.querySelectorAll('.articles-grid'));
+    const gridChildren = grids.map((grid) => Array.from(grid.children));
+    const wideCards = cards.filter((card) => card.classList.contains('article-card_horizontal'));
 
+    function arrangeCards(isFiltered) {
+      if (isFiltered) {
+        grids[0].append(...cards);
+      } else {
+        grids.forEach((grid, index) => grid.append(...gridChildren[index]));
+      }
+      wideCards.forEach((card) => {
+        card.classList.toggle('article-card_horizontal', !isFiltered);
+        card.querySelector('.article-tag').classList.toggle('article-tag_white', !isFiltered);
+      });
+    }
+
+    function render() {
+      const isFiltered = activeCategory !== 'all';
+      const matching = cards.filter((card) => !isFiltered || card.dataset.articleCategory === activeCategory);
+      const limit = isFiltered ? matching.length : visibleLimit;
+
+      arrangeCards(isFiltered);
       cards.forEach((card) => {
         card.hidden = true;
       });
@@ -27,7 +46,7 @@
         card.hidden = false;
       });
       curated.forEach((block) => {
-        block.hidden = activeCategory !== 'all';
+        block.hidden = isFiltered;
       });
 
       if (moreBlock) moreBlock.hidden = limit >= matching.length;
