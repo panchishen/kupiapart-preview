@@ -7,8 +7,12 @@
 
   /* Header and footer links are root-relative, so in the preview they lead to the live site. */
   const LIVE_SITE = 'https://xn--80aawhzciqc.xn--p1ai';
-  document.querySelectorAll('a[href^="/"]').forEach((link) => {
-    link.href = LIVE_SITE + link.getAttribute('href');
+  /* Rewritten on interaction, so links of the form loaded over AJAX are covered too. */
+  ['click', 'auxclick', 'contextmenu'].forEach((type) => {
+    document.addEventListener(type, (event) => {
+      const link = event.target.closest('a[href^="/"]');
+      if (link) link.href = LIVE_SITE + link.getAttribute('href');
+    }, true);
   });
 
   document.querySelectorAll('.header__hamburger-wrapper').forEach((wrapper) => {
