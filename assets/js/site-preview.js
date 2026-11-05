@@ -5,6 +5,12 @@
 (function () {
   'use strict';
 
+  /* Header and footer links are root-relative, so in the preview they lead to the live site. */
+  const LIVE_SITE = 'https://xn--80aawhzciqc.xn--p1ai';
+  document.querySelectorAll('a[href^="/"]').forEach((link) => {
+    link.href = LIVE_SITE + link.getAttribute('href');
+  });
+
   document.querySelectorAll('.header__hamburger-wrapper').forEach((wrapper) => {
     const open = wrapper.querySelector('.header__hamburger-button:not(.header__close-button)');
     const close = wrapper.querySelector('.header__close-button');
