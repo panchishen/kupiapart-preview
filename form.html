@@ -1,0 +1,43 @@
+<!--
+  Lead form, loaded over AJAX by assets/js/forms.js.
+  Before release: the CMS must output its own values for the hidden fields, in particular nc_token,
+  cc and sub. These are the values of the presentation form on the home page, and nc_token is left empty.
+-->
+<form class="lead-form" action="/netcat/add.php?isNaked=1" method="POST" enctype="multipart/form-data" novalidate>
+  <input name="admin_mode" type="hidden" value="">
+  <input name="nc_token" type="hidden" value="">
+  <input name="catalogue" type="hidden" value="1">
+  <input name="cc" type="hidden" value="34">
+  <input name="sub" type="hidden" value="14">
+  <input name="posting" type="hidden" value="1">
+  <input name="curPos" type="hidden" value="0">
+  <input name="f_Parent_Message_ID" type="hidden" value="0">
+  <input name="f_Good" type="hidden" value="Статьи">
+  <input name="f_Checked" type="hidden" value="1">
+
+  <div class="lead-form__fields">
+    <label class="lead-form__field" for="lead-name">
+      Имя
+      <input class="input" id="lead-name" name="f_Name" type="text" placeholder="Как к&nbsp;вам обращаться" autocomplete="name">
+    </label>
+    <label class="lead-form__field" for="lead-phone">
+      Телефон
+      <input class="input" id="lead-phone" name="f_Phone" type="tel" placeholder="+7 (___) ___-__-__" autocomplete="tel" inputmode="tel">
+    </label>
+  </div>
+
+  <button class="button button_main" type="submit" disabled>Отправить заявку</button>
+
+  <div class="lead-form__consents">
+    <label class="lead-form__consent">
+      <input type="checkbox" name="data-processing" data-form-consent>
+      <span>Я&nbsp;согласен на&nbsp;обработку моих персональных данных. С&nbsp;<a href="/personal-data" target="_blank">политикой в&nbsp;отношении обработки персональных данных</a> ознакомлен и&nbsp;согласен.</span>
+    </label>
+    <label class="lead-form__consent">
+      <input type="checkbox" name="privacy-policy" data-form-consent>
+      <span>Я&nbsp;согласен с&nbsp;<a href="/privacy-policy" target="_blank">политикой конфиденциальности</a></span>
+    </label>
+  </div>
+
+  <div class="lead-form__status" data-form-status role="status" aria-live="polite"></div>
+</form>
