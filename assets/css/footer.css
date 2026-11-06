@@ -1,0 +1,304 @@
+/*
+ * Footer layout. Load after fav-aparts.css: it replaces the footer rules
+ * scattered across that file, so the selectors are scoped with .footer to win.
+ */
+
+/* ---------- Top: logos, navigation, contacts, ratings ---------- */
+.footer .footer__container {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 0 64px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--gray-secondary-color);
+}
+
+.footer .footer__info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 24px;
+  width: auto;
+  max-width: none;
+}
+
+.footer .footer__info-logo-link {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 24px;
+}
+
+.footer .footer__info-text {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.footer .footer__links-col-wrapper {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr) auto;
+  gap: 32px;
+  width: auto;
+}
+
+.footer .footer__links-col,
+.footer .footer__contacts {
+  width: auto;
+  max-width: none;
+}
+
+.footer .footer__contacts-container {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer .footer__addresses {
+  display: block;
+}
+
+.footer .footer__clickable-link {
+  white-space: nowrap;
+}
+
+/* The template outputs an empty second address line. */
+.footer .footer__contacts-address-text:empty,
+.footer .footer__contacts-address-text:only-child ~ .footer__contacts-address-text {
+  display: none;
+}
+
+.footer .footer__widgets-wrapper {
+  flex-direction: column;
+  align-items: end;
+  gap: 8px;
+}
+
+/* ---------- Bottom: socials and documents, legal details, disclaimer ---------- */
+.footer .footer__bottom-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 32px 48px;
+  padding-top: 32px;
+}
+
+.footer .footer__tg-link-wrapper {
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+  width: auto;
+}
+
+.footer .footer__tg-link {
+  gap: 12px;
+}
+
+/* The forced line break from the template tears the text in narrow columns. */
+.footer .footer__tg-link-text {
+  max-width: 210px;
+  margin-left: 4px;
+}
+
+.footer .footer__tg-link-text br {
+  display: none;
+}
+
+.footer .footer__links-wrapper {
+  align-items: start;
+  gap: 8px;
+}
+
+.footer .footer__legal,
+.footer .footer__info-dev {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: auto;
+  max-width: none;
+  margin: 0;
+  font-size: 12px;
+  line-height: 17px;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: var(--gray-tertiary-color);
+  overflow-wrap: break-word;
+}
+
+.footer .footer__legal p,
+.footer .footer__info-dev p {
+  margin: 0;
+}
+
+.footer .footer__legal {
+  text-align: left;
+}
+
+.footer .footer__legal-name {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.footer .footer__info-dev {
+  justify-self: end;
+  max-width: 400px;
+  text-align: right;
+}
+
+/* Overrides the centred text the site sets on every child. */
+.footer .footer__info-dev * {
+  text-align: inherit;
+}
+
+.footer .footer__info-dev-info {
+  margin-bottom: 8px;
+}
+
+.footer .footer__dev-link {
+  color: var(--white);
+}
+
+/* ---------- 992–1199: narrower container ---------- */
+@media (max-width: 1199px) {
+  .footer .footer__container {
+    gap: 0 40px;
+  }
+
+  .footer .footer__links-col-wrapper {
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
+    gap: 24px;
+  }
+
+  .footer .footer__bottom-container {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 32px;
+  }
+}
+
+/* ---------- Tablet: logos above, legal details next to socials ---------- */
+@media (max-width: 991px) {
+  .footer .footer__container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .footer .footer__info {
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .footer .footer__info-logo-link {
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .footer .footer__info-text {
+    text-align: right;
+  }
+
+  .footer .footer__links-col-wrapper {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr);
+    gap: 32px 24px;
+    width: 100%;
+  }
+
+  .footer .footer__links-col:has(.footer__widgets-wrapper) {
+    grid-column: 1 / -1;
+  }
+
+  .footer .footer__widgets-wrapper {
+    flex-direction: row;
+    justify-content: start;
+    align-items: start;
+  }
+
+  /* Same columns as the navigation above, so the legal details line up with "Контакты". */
+  .footer .footer__bottom-container {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1.3fr);
+    gap: 32px 24px;
+  }
+
+  .footer .footer__tg-link-wrapper {
+    grid-column: 1 / 3;
+  }
+
+  .footer .footer__info-dev {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    max-width: none;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-secondary-color);
+    text-align: left;
+  }
+
+  .footer .footer__info-dev-info {
+    max-width: 560px;
+  }
+}
+
+/* ---------- Phone: one column, everything aligned left ---------- */
+@media (max-width: 767px) {
+  .footer {
+    padding-top: 48px;
+  }
+
+  .footer .footer__info {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .footer .footer__info-text {
+    text-align: left;
+  }
+
+  .footer .footer__links-col-wrapper {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .footer .footer__contacts {
+    grid-column: 1 / -1;
+  }
+
+  .footer .footer__bottom-container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .footer .footer__tg-link-wrapper {
+    grid-column: auto;
+  }
+
+  .footer .footer__tg-link-wrapper,
+  .footer .footer__links-wrapper {
+    align-items: start;
+  }
+}
+
+@media (max-width: 575px) {
+  .footer .footer__info-logo-link {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .footer .footer__info-logo {
+    width: 136px;
+  }
+
+  .footer .footer__info {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 374px) {
+  .footer .footer__links-col-wrapper {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer .footer__widgets-wrapper {
+    flex-direction: column;
+  }
+}
